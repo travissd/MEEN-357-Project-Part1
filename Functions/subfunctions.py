@@ -117,6 +117,7 @@ def F_net(omega, terrain_angle, rover, planet, Crr):
     return Fnet
 
 
+from scipy.special import erf
 def F_rolling(ohm, terrangle, rov, plan, Crr):
     #Input Criteria Check
     if not isinstance(ohm, (np.ndarray, int, float, np.number)):
@@ -143,8 +144,9 @@ def F_rolling(ohm, terrangle, rov, plan, Crr):
     omega_out = ohm/Ng
     r = rov["wheel_assembly"]['wheel']['radius']
     v = r * omega_out
-    F_rr = F_rrsimp*math.erf(40*v)
+    F_rr = F_rrsimp * erf(40*v) 
     return F_rr
+
 
 #Ethan John 9/17/2026
 #verifies input and gear type and then outputs gear ratio
